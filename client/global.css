@@ -6,95 +6,36 @@
 @tailwind utilities;
 
 @layer base {
-  /**
-   * Tailwind CSS theme
-   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
-   * A different format will require also updating the theme in tailwind.config.ts.
-  */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 210 73% 15%; /* #0A2540 */
+    --foreground: 0 0% 100%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 207 66% 18%; /* #0F2F4A */
+    --card-foreground: 0 0% 100%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 207 66% 18%;
+    --popover-foreground: 0 0% 100%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 142 71% 45%; /* #22C55E */
+    --primary-foreground: 210 40% 10%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 215 52% 25%; /* #1E3A5F */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 215 20% 65%; /* #94A3B8 */
+    --muted-foreground: 213 27% 84%; /* #CBD5E1 */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 199 95% 60%; /* #38BDF8 */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 215 52% 25%; /* #1E3A5F */
+    --input: 215 52% 25%;
+    --ring: 142 71% 45%;
 
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 1rem;
   }
 }
 
@@ -104,17 +45,43 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    background: radial-gradient(1200px 800px at 20% 0%, rgba(56, 189, 248, 0.12), transparent 55%),
+                radial-gradient(1200px 800px at 80% 30%, rgba(34, 197, 94, 0.1), transparent 55%),
+                hsl(var(--background));
+    @apply text-foreground min-h-screen antialiased;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
   :where(p, span, li, h1, h2, h3, h4, h5, h6, a, button, label, td, th) {
     overflow-wrap: anywhere;
     word-break: break-word;
   }
+}
 
-  pre,
-  code {
-    overflow-x: auto;
-    white-space: pre;
+@layer components {
+  .cardElev {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.04));
+    border: 1px solid rgba(30, 58, 95, 1);
+    box-shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+    @apply rounded-[16px];
+  }
+
+  .btnPrimary {
+    background: linear-gradient(180deg, rgba(34, 197, 94, 0.95), rgba(22, 163, 74, 0.9));
+    border: 1px solid rgba(34, 197, 94, 0.35);
+    color: #071a2b;
+    @apply font-bold transition-all hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .btn {
+    @apply font-semibold px-4 py-2.5 rounded-[18px] transition-all duration-200 inline-flex items-center justify-center cursor-pointer;
+  }
+
+  .input {
+    @apply w-full rounded-[16px] border border-border bg-[#0a254080] px-3 py-2.5 text-white outline-none transition-all focus:border-primary/50 focus:ring-2 focus:ring-primary/20;
+  }
+
+  .label {
+    @apply text-[12px] font-semibold text-[#cbd5e1eb] mb-1.5 block;
   }
 }
