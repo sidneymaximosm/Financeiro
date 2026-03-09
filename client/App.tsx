@@ -1,7 +1,4 @@
-import "./global.css";
-
 import { Toaster } from "@/components/ui/toaster";
-import { createRoot, Root } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -31,17 +28,4 @@ const App = () => (
   </QueryClientProvider>
 );
 
-// We store the root in a global variable to ensure it's only created once
-// and reuse it across HMR reloads, fixing the ReactDOMClient warning.
-const container = document.getElementById("root");
-if (container) {
-  const rootKey = "_reactRoot";
-  let root = (container as any)[rootKey] as Root;
-  
-  if (!root) {
-    root = createRoot(container);
-    (container as any)[rootKey] = root;
-  }
-  
-  root.render(<App />);
-}
+export default App;
