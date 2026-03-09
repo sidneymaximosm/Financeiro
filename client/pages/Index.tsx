@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LayoutDashboard } from "lucide-react";
 
 export default function Index() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Login logic would go here
-    console.log("Login with:", { email, password });
+    // Temporary redirect to dashboard for preview
+    navigate("/dashboard");
   };
 
   return (
@@ -81,7 +82,7 @@ export default function Index() {
           
           <div className="text-[14px] text-muted-foreground">
             Ainda não tem conta?{" "}
-            <Link to="#" className="text-accent hover:underline font-semibold">
+            <Link to="/cadastrar" className="text-accent hover:underline font-semibold">
               Criar conta
             </Link>
           </div>
