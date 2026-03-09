@@ -1,19 +1,25 @@
 import "./global.css";
 import React from "react";
-import { createRoot } from "react-dom/client";
+import { createRoot, Root } from "react-dom/client";
 import App from "./App";
 
 const container = document.getElementById("root");
 
 if (container) {
-  // Use window to persist the root during HMR reloads in development
+  // Use a global key to persist the root across HMR reloads
   const global = window as any;
+  const rootKey = "_growlify_react_root";
   
-  if (!global._root) {
-    global._root = createRoot(container);
+  let root: Root;
+  
+  if (!global[rootKey]) {
+    root = createRoot(container);
+    global[rootKey] = root;
+  } else {
+    root = global[rootKey];
   }
   
-  global._root.render(
+  root.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>
